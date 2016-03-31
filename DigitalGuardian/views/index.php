@@ -17,7 +17,7 @@
                 </h1>
             </div>
             <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-                <form class="text_white" method="post" action=" <?php $this->load->model('login'); ?> ">
+                <form class="text_white" method="post" action="">
                     <div class="form-group">
                         <label for="username">User Name:</label>
                         <input name="username" type="text" class="form-control" id="username" placeholder="User Name">

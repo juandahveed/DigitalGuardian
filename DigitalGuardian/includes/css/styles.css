@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : JD
 */
 
-.home_header{background-image:url(/assets/img/header.jpg); background-size:cover; height:718px;}
+.home_header{background-image:url(/DigitalGuardian/includes/header.jpg); background-size:cover; height:718px;}
 /*.home_header{background-image:url(/ChurchCheckIn/includes/images/raise.jpg); background-size:cover; height:718px;}*/
 .text_white{color:#fff;}
 
