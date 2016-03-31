@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 24, 2015, 8:20:05 PM
+    Author     : JD
+*/
+
+.home_header{background-image:url(/assets/img/header.jpg); background-size:cover; height:718px;}
+/*.home_header{background-image:url(/ChurchCheckIn/includes/images/raise.jpg); background-size:cover; height:718px;}*/
+.text_white{color:#fff;}
+
+#teachers_available, #rooms_available {padding:2% 4%;}
