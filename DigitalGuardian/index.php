@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php require 'header.php'; ?>
+<?php require '/views/header.php'; ?>
 
 <div class="container-fluid home_header">
     <div class="container">
@@ -33,4 +33,4 @@
     </div>
 </div>
 
-<?php require 'footer.php';
+<?php require '/views/footer.php';
