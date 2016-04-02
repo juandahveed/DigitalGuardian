@@ -13,3 +13,4 @@ and open the template in the editor.
 .text_white{color:#fff;}
 
 #teachers_available, #rooms_available {padding:2% 4%;}
+.dashboard_header{background-image:url(../images/dashboard_header.jpg); background-size:cover; height:718px;}

@@ -4,6 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+session_start();
 ?>
 <html>
     <head>
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="../includes/css/bootstrap-theme.min.css" type="text/css">
         <link rel="stylesheet" href="../includes/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="../includes/css/styles.css" type="text/css">
+        <link rel="icon" type="image/png" href="../includes/images/triangle.gif">;
 
     </head>
     <body>
