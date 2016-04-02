@@ -7,10 +7,7 @@
  */
 
 class dg_app {
-
-    private $connect_username = 'root';
-    private $connect_password = 'root';
-    private $dsn = 'mysql:dbname=church;host=localhost;port=3306';
+    
     private $error = false;
     private $is_new_session = false;
 
@@ -28,9 +25,9 @@ class dg_app {
     }
 
     public function connect($postVars) {
-        $this->dsn = $dsn;
-        $this->connect_username = $connect_username;
-        $this->connect_password = $connect_password;
+        $connect_username = 'root';
+        $connect_password = 'root';
+        $dsn = 'mysql:dbname=church;host=localhost;port=3306';
         
         try {
 

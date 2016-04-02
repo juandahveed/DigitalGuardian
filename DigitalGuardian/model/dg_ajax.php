@@ -10,9 +10,9 @@ require 'dg_app.php';
 
 class dg_ajax extends dg_app{
     
-//    public function __construct(){
-//        parent::__construct();
-//    }
+    public function __construct(){
+        parent::__construct();
+    }
 }
 
 $dg_ajax_obj = new dg_ajax();

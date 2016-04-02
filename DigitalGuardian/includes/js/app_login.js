@@ -28,13 +28,12 @@ jQuery(document).ready(function ($) {
                 $('.bad_login').text('Loading....');
             }
 
-        })
-                .done(function (data) {
+        }).done(function (data) {
                     console.log(jQuery.parseJSON(data));
                     data = jQuery.parseJSON(data);
 
                     if (data.success === 'login') {
-                        window.location = '/ChurchCheckIn/dashboard.php';
+                        window.location = '/views/dashboard.php';
 //                   $.cookie('session_name', data, {path: '/'});
                         console.log('if true.... ' + data);
                     }
