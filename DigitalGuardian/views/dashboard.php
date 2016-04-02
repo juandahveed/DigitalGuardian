@@ -1,9 +1,9 @@
 <?php
 require 'header.php';
 //session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: /');
-}
+//if (!isset($_SESSION['username'])) {
+//    header('Location: /');
+//}
 ?>
 <div class="container-fluid dashboard_header">
     <div class="container">

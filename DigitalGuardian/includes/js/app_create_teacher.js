@@ -13,7 +13,9 @@ jQuery(document).ready(function ($) {
         var teacher_gender = $('#teachergender').val();
         var teacher_address = $('#teacheraddress').val();
         var teacher_phone = $('#teacherphone').val();
+        var action = 'app_create_teacher';
         var success = '';
+        var message_text = '';
 
 
         if ($('#teacherfirst').val() === '' || $('#teacherlast').val() === '' || $('#teacherbirthday').val() === '' ||
@@ -23,16 +25,17 @@ jQuery(document).ready(function ($) {
 
         $.ajax({
             type: 'POST',
-            url: '/ChurchCheckIn/create_teacher_mysql.php',
+            url: '../../model/dg_ajax.php',
 //            dataType: 'json',
-           data: { 'first_name' : teacher_first_name, 'last_name' : teacher_last_name, 'birthday' : teacher_birthday,
-           'sex' : teacher_gender, 'address' : teacher_address, 'phone' : teacher_phone, 'success': success},
+            data: {'first_name': teacher_first_name, 'last_name': teacher_last_name, 'birthday': teacher_birthday,
+                'sex': teacher_gender, 'address': teacher_address, 'phone': teacher_phone, 'success': success,
+                'action': action, 'message_text': message_text},
 //            data: {'success': success, 'message_text': message_text, 'child_first_name': child_first_name},
             success: function (data) {
                 data = jQuery.parseJSON(data);
 
                 if (data.success === 'true') {
-                    window.location = '/ChurchCheckIn/dashboard.php';
+                    window.location = '/views/dashboard.php';
                     $('#dash_header').text(data.message_text);
                 }
                 else {

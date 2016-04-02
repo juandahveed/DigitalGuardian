@@ -21,6 +21,7 @@
 <script src="../includes/js/bootstrap.min.js"></script>
 <script src="../includes/js/app_login.js"></script>
 <script src="../includes/js/app_register_child.js"></script>
+<script src="../includes/js/app_create_teacher.js"></script>
 
 </body>
 </html>

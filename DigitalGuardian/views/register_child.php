@@ -1,8 +1,8 @@
 <?php require 'header.php';
 
-if (!isset($_SESSION['username'])) {
-    header('Location: /');
-}
+//if (!isset($_SESSION['username'])) {
+//    header('Location: /');
+//}
 ?>
 <div class="container-fluid home_header">
     <div class="container">

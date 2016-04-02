@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
         var child_phone = $('#childphone').val();
         var action = 'app_register_child';
         var success = '';
-//        var message_text = '';
+        var message_text = '';
 
         if ($('#childfirst').val() === '' || $('#childlast').val() === '' || $('#childbirthday').val() === '' ||
                 $('#childgender').val() === '' || $('#childaddress').val() === '' || $('#childphone').val() === '') {
@@ -26,13 +26,14 @@ jQuery(document).ready(function ($) {
             type: 'POST',
             url: '../../model/dg_ajax.php',
 //            dataType: 'json',
-           data: { 'first_name' : child_first_name, 'last_name' : child_last_name, 'birthday' : child_birthday,
-           'sex' : child_gender, 'address' : child_address, 'phone' : child_phone, 'action' : action, 'success' : success},
-
+            data: {'first_name': child_first_name, 'last_name': child_last_name, 'birthday': child_birthday,
+                'sex': child_gender, 'address': child_address, 'phone': child_phone, 'action': action, 'success': success,
+                'message_text': message_text},
             success: function (data) {
                 data = jQuery.parseJSON(data);
 //@todo add message_text for success to show on page
                 if (data.success === 'true') {
+//                    console.log(data);
                     window.location = '/views/dashboard.php';
                     $('#dash_header').text(data.message_text);
                 }
