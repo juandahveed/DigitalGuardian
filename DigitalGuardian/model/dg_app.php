@@ -25,7 +25,6 @@ class dg_app {
     }
 
     public static function connect() {
-//        @todo seperate the login and connection
         $connect_username = 'root';
         $connect_password = 'root';
         $dsn = 'mysql:dbname=church;host=localhost;port=3306';
@@ -43,7 +42,6 @@ class dg_app {
     }
 
     public function login($postVars) {
-//        @todo seperate the login and connection
 
         $db = self::connect();
 
@@ -99,7 +97,6 @@ class dg_app {
     }
 
     public function register_child($postVars) {
-//        @todo add connect only function and let this use the PDO METHOD
 //        @todo add message text for success return to change on page header
 
         $db = self::connect();
@@ -261,6 +258,68 @@ class dg_app {
             } else {
                 echo 'Query Unsuccessful';
             }
+
+            // close the connection
+            $db = null;
+        }
+    }
+
+    public function assign_teacher_to_room() {
+        $db = self::connect();
+
+        //check connection
+        if (!$db) {
+            die('Connection Failed: ' . mysqli_connect_error());
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            
+            $response = new stdClass();
+
+            // grab form fields and save as php variables
+            $current_teacher = '';
+            $current_room = '';
+            $success = '';
+            $message_text = '';
+
+            if (isset($POST['current_teacher'])) {
+
+                $response->current_teacher = $POST['current_teacher'];
+            } else {
+                 $response->current_teacher = null;
+            }
+
+            if (isset($POST['current_room'])) {
+
+                 $response->current_room = $POST['current_room'];
+            } else {
+                 $response->current_room = null;
+            }
+
+//            echo $current_room;
+             // create query to run on database
+            $qry = $db->prepare("INSERT INTO $response->current_room (person) VALUES('" . $response->current_teacher . "')");
+
+            //bind the parameters to the query
+            $qry->bindParam(':current_room', $response->current_room, PDO::PARAM_STR, 25);
+            $qry->bindParam(':current_teacher', $response->current_teacher, PDO::PARAM_STR, 25);
+
+//        $qry->execute();
+
+            if ($qry->execute()) {
+                $response->success = 'true';
+                $response->message_text = 'Thanks For Assigning A Teacher!';
+                echo json_encode($response);
+            } else {
+                echo 'Query Unsuccessful';
+            }
+
+//        $message_text = 'You have added ' . $teacher_first_name . ' successfully';
+//        $response = array('teacher_first_name' => $teacher_first_name, 'teacher_last_name' => $teacher_last_name, 
+//            'teacher_birthday' => $teacher_birthday, 'teacher_gender' => $teacher_gender, 'teacher_address' => $teacher_address, 
+//            'teacher_phone' => $teacher_phone, 'success' => 'true', 'message_text' => 'You have added ' . $teacher_first_name . ' successfully');
+//                $response = array('success' => 'true', 'message_text' => $message_text);
+////        var_dump($result);
 
             // close the connection
             $db = null;

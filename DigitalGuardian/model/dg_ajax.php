@@ -30,6 +30,10 @@ if (isset($_POST)) {
             $dg_ajax_obj = new dg_ajax;
             $dg_ajax_obj->create_teacher($_POST);
             break;
+        case 'app_assign_teacher_to_room':
+            $dg_ajax_obj = new dg_ajax;
+            $dg_ajax_obj->assign_teacher_to_room($_POST);
+            break;
         default:
             break;
     }

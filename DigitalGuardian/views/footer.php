@@ -22,6 +22,7 @@
 <script src="../includes/js/app_login.js"></script>
 <script src="../includes/js/app_register_child.js"></script>
 <script src="../includes/js/app_create_teacher.js"></script>
+<script src="../includes/js/app_assign_teacher_to_room.js"></script>
 
 </body>
 </html>
