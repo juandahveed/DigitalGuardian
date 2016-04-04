@@ -273,38 +273,30 @@ class dg_app {
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            
+
             $response = new stdClass();
 
-            // grab form fields and save as php variables
-            $current_teacher = '';
-            $current_room = '';
-            $success = '';
-            $message_text = '';
-
-            if (isset($POST['current_teacher'])) {
-
-                $response->current_teacher = $POST['current_teacher'];
+            if (isset($_POST['current_teacher'])) {
+                $response->current_teacher = $_POST['current_teacher'];
             } else {
                  $response->current_teacher = null;
             }
 
-            if (isset($POST['current_room'])) {
-
-                 $response->current_room = $POST['current_room'];
+            if (isset($_POST['current_room'])) {
+                 $response->current_room = $_POST['current_room'];
             } else {
                  $response->current_room = null;
             }
 
-//            echo $current_room;
              // create query to run on database
             $qry = $db->prepare("INSERT INTO $response->current_room (person) VALUES('" . $response->current_teacher . "')");
-
+//            @todo only adventure club room query works, need to finish other rooms in the database
+//                    and start adding families with kids as one, then separation and flags for active will take place
+//                    
             //bind the parameters to the query
-            $qry->bindParam(':current_room', $response->current_room, PDO::PARAM_STR, 25);
-            $qry->bindParam(':current_teacher', $response->current_teacher, PDO::PARAM_STR, 25);
+            $qry->bindParam(':current_room', $response->current_room, PDO::PARAM_STR, 50);
+            $qry->bindParam(':current_teacher', $response->current_teacher, PDO::PARAM_STR, 50);
 
-//        $qry->execute();
 
             if ($qry->execute()) {
                 $response->success = 'true';

@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
         var success = '';
         var message_text = '';
         
-        console.log(current_room + current_teacher);
+//        console.log(current_room + current_teacher);
 
 //        i don't believe i can validate a drop down list ???
 //
@@ -27,8 +27,8 @@ jQuery(document).ready(function ($) {
             beforeSend: function () {
                 $('#assign_teacher_header').text('Loading....');
             }
-        }) .done(function (data) {
-                    console.log(jQuery.parseJSON(data));
+        }).done(function (data) {
+//                    console.log(jQuery.parseJSON(data));
                     data = jQuery.parseJSON(data);
 
                     if (data.success === 'true') {
