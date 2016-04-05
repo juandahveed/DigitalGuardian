@@ -275,27 +275,38 @@ class dg_app {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $response = new stdClass();
+//            $responseUpdate = new stdClass();
 
             if (isset($_POST['current_teacher'])) {
                 $response->current_teacher = $_POST['current_teacher'];
             } else {
-                 $response->current_teacher = null;
+                $response->current_teacher = null;
             }
 
             if (isset($_POST['current_room'])) {
-                 $response->current_room = $_POST['current_room'];
+                $response->current_room = $_POST['current_room'];
             } else {
-                 $response->current_room = null;
+                $response->current_room = null;
             }
 
-             // create query to run on database
-            $qry = $db->prepare("INSERT INTO $response->current_room (person) VALUES('" . $response->current_teacher . "')");
+            $timezone = -5; //(GMT -5:00) EST (U.S. & Canada)
+
+            if (isset($_POST) && !empty($_POST)) {
+                $timestamp = gmdate("Y/m/j H:i:s", time() + 3600 * ($timezone + date("I")));
+            } else {
+                $timestamp = null;
+            }
+
+            // create query to run on database
+            $qry = $db->prepare("INSERT INTO $response->current_room (person, timestamp) VALUES('" . $response->current_teacher . "', "
+                    . "'" . $timestamp . "')");
 //            @todo only adventure club room query works, need to finish other rooms in the database
 //                    and start adding families with kids as one, then separation and flags for active will take place
 //                    
             //bind the parameters to the query
             $qry->bindParam(':current_room', $response->current_room, PDO::PARAM_STR, 50);
             $qry->bindParam(':current_teacher', $response->current_teacher, PDO::PARAM_STR, 50);
+            $qry->bindParam(':timestamp', $timestamp, PDO::PARAM_STR, 50);
 
 
             if ($qry->execute()) {
@@ -306,13 +317,26 @@ class dg_app {
                 echo 'Query Unsuccessful';
             }
 
+//            $qryUpdate = $db->prepare("UPDATE teacher SET status='active' WHERE first_name='" . $response->current_teacher . "'");
+////                bind second query parameters
+//            $qryUpdate->bindParam(':current_teacher', $response->current_teacher, PDO::PARAM_STR, 50);
+//            
+//            if ($qryUpdate->execute()) {
+//                $responseUpdate->success = 'true';
+//                $responseUpdate->message_text = 'Thanks For Updating Teacher!';
+//                echo json_encode($responseUpdate);
+//            } else {
+//                echo 'Query Unsuccessful, Couldn\'t Update Teacher Status';
+//            }
+
+//            @todo I NEED A SECOND QUERY TO UPDATE TEACHER STATUS TO ACTIVE
+//            
 //        $message_text = 'You have added ' . $teacher_first_name . ' successfully';
 //        $response = array('teacher_first_name' => $teacher_first_name, 'teacher_last_name' => $teacher_last_name, 
 //            'teacher_birthday' => $teacher_birthday, 'teacher_gender' => $teacher_gender, 'teacher_address' => $teacher_address, 
 //            'teacher_phone' => $teacher_phone, 'success' => 'true', 'message_text' => 'You have added ' . $teacher_first_name . ' successfully');
 //                $response = array('success' => 'true', 'message_text' => $message_text);
 ////        var_dump($result);
-
             // close the connection
             $db = null;
         }
