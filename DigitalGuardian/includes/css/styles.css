@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 .home_header{background-image:url(../images/header.jpg); background-size:cover; height:718px;}
+.tables_header{background-color:rgba(0, 116, 107, .5);}
 /*.home_header{background-image:url(/ChurchCheckIn/includes/images/raise.jpg); background-size:cover; height:718px;}*/
 .text_white{color:#fff;}
 

@@ -19,10 +19,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="../includes/js/bootstrap.min.js"></script>
+<script src="../includes/js/bootstrap-table.js"></script>
 <script src="../includes/js/app_login.js"></script>
 <script src="../includes/js/app_register_child.js"></script>
 <script src="../includes/js/app_create_teacher.js"></script>
 <script src="../includes/js/app_assign_teacher_to_room.js"></script>
+<script src="../includes/js/app_populate_tables.js"></script>
 
 </body>
 </html>

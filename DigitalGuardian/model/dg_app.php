@@ -341,5 +341,47 @@ class dg_app {
             $db = null;
         }
     }
+    
+    public function populate_tables() {
+        $db = self::connect();
+
+        //check connection
+        if (!$db) {
+            die('Connection Failed: ' . mysqli_connect_error());
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            $response = new stdClass();
+
+            // create query to run on database
+            $qry = $db->prepare("SELECT * FROM teacher");
+
+            //bind the parameters to the query
+//            $qry->bindParam(':first_name', $response->first_name, PDO::PARAM_STR, 25);
+//            $qry->bindParam(':last_name', $response->last_name, PDO::PARAM_STR, 25);
+//            $qry->bindParam(':birthday', $response->birthday, PDO::PARAM_STR, 25);
+//            $qry->bindParam(':sex', $response->sex, PDO::PARAM_STR, 6);
+//            $qry->bindParam(':address', $response->address, PDO::PARAM_STR, 50);
+//            $qry->bindParam(':phone', $response->phone, PDO::PARAM_STR, 15);
+
+        $qry->execute();
+        $response = $qry->fetchAll(PDO::FETCH_OBJ);
+//        $response->success="true";
+//        echo json_encode($response);
+        echo json_encode($response);
+
+//            if ($qry->execute()) {
+//                $response->success = 'true';
+//                $response->message_text = 'Thanks For Creating A Teacher!';
+//                echo json_encode($response);
+//            } else {
+//                echo 'Query Unsuccessful';
+//            }
+
+            // close the connection
+            $db = null;
+        }
+    }
 
 }

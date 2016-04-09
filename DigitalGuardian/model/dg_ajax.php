@@ -16,7 +16,7 @@ class dg_ajax extends dg_app {
 
 }
 
-if (isset($_POST)) {
+if (isset($_POST['action']) && $_POST['action']) {
     switch ($_POST['action']) {
         case 'app_login':
             $dg_ajax_obj = new dg_ajax();
@@ -33,6 +33,10 @@ if (isset($_POST)) {
         case 'app_assign_teacher_to_room':
             $dg_ajax_obj = new dg_ajax;
             $dg_ajax_obj->assign_teacher_to_room($_POST);
+            break;
+         case 'app_populate_tables':
+            $dg_ajax_obj = new dg_ajax;
+            $dg_ajax_obj->populate_tables();
             break;
         default:
             break;
