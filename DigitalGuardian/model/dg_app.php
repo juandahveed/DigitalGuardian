@@ -353,12 +353,18 @@ class dg_app {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $response = new stdClass();
+            
+            if (isset($_POST['current_table'])) {
+                $response->current_table = $_POST['current_table'];
+            } else {
+                $response->current_table = null;
+            }
 
             // create query to run on database
-            $qry = $db->prepare("SELECT * FROM teacher");
+            $qry = $db->prepare("SELECT * FROM $response->current_table");
 
             //bind the parameters to the query
-//            $qry->bindParam(':first_name', $response->first_name, PDO::PARAM_STR, 25);
+            $qry->bindParam(':current_table', $response->current_table, PDO::PARAM_STR, 40);
 //            $qry->bindParam(':last_name', $response->last_name, PDO::PARAM_STR, 25);
 //            $qry->bindParam(':birthday', $response->birthday, PDO::PARAM_STR, 25);
 //            $qry->bindParam(':sex', $response->sex, PDO::PARAM_STR, 6);

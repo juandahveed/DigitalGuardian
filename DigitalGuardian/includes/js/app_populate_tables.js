@@ -8,6 +8,7 @@ jQuery(document).ready(function ($) {
     $('#populate_tables').click(function (event) {
         event.preventDefault();
         var success = '';
+        var current_table = $('#tables_dropdown').val();
         var action = 'app_populate_tables';
 
 //        does this even matter here? it seems as though php does all the validation ? and it should check for undefined....
@@ -21,7 +22,7 @@ jQuery(document).ready(function ($) {
 //           dataType: 'json',
 //           data: 'username='+username+'&password='+password,
 //            data: {'username': username, 'password': password, 'success': success, 'action': action},
-            data: {'success': success, 'action': action},
+            data: {'success': success, 'action': action, 'current_table': current_table},
             beforeSend: function () {
                 $('.bad_login').text('Loading....');
             }
@@ -29,31 +30,23 @@ jQuery(document).ready(function ($) {
         }).done(function (data) {
             //console.log(jQuery.parseJSON(data));
             data = jQuery.parseJSON(data);
+            $('#table').bootstrapTable('removeAll');
             // grab all the objects returned
-            jQuery.each(data, function (key, value) {
-                // get the keys for each object returned
-//                jQuery.each(value, function (key, value) {
-//                    console.log(key);
-//                });
-                console.log(value);
-            });
-            console.log(data[0]);
-            columns_set_up = {};
+            columns = {};
+            columns_array = [];
+            
             jQuery.each(data[0], function(key, value){
-//                console.log('title : ' + key);
-//                console.log('field : ' + value);
-                columns_set_up.title = key;
-                columns_set_up.field = value;
-//                columns_set_up.push(title: 'key', field: 'value');
+                title = key;
+                columns = { title: title, field : title};
+                columns_array.push(columns);
             });
-            console.log(columns_set_up);
-//            set_columns = jQuery.parseJSON(columns_set_up);
+            console.log(columns_array);
 
             if (data) {
                 console.log('success');
                 $(function () {
                     $('#table').bootstrapTable({
-                        columns: columns_set_up,
+                        columns: columns_array,
                         data: data
                     });
                 });
